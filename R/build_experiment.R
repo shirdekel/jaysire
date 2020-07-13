@@ -12,6 +12,7 @@
 #' @param jsPsych_path A string specifying the path to jsPsych
 #' @param resources A tibble specifying how to construct resource files, or NULL
 #' @param columns Additional data values (constants) to store
+#' @param vanilla Vanilla code to add at the beginning of experiment.js
 #' @param ... Arguments to pass to jsPsych.init()
 #'
 #' @return Invisibly returns \code{NULL}
@@ -133,7 +134,7 @@
 #' the GitHub page.
 #'
 #' @export
-build_experiment <- function(timeline, path, experiment_folder = "experiment", data_folder = "data", experiment_title = NULL, jsPsych_path = file.path(system.file("extdata", "jsPsych", package = "jaysire")), resources = NULL, columns = NULL, ...) {
+build_experiment <- function(timeline, path, experiment_folder = "experiment", data_folder = "data", experiment_title = NULL, jsPsych_path = file.path(system.file("extdata", "jsPsych", package = "jaysire")), resources = NULL, columns = NULL, vanilla = NULL, ...) {
 
   # set up
   init <- list(...)
@@ -249,6 +250,13 @@ build_experiment <- function(timeline, path, experiment_folder = "experiment", d
     )
   }
 
+  # vanilla js code to be added at the beginning of the experiment.js file
+  if (is.null(vanilla)) {
+    set_vanilla <- character(0)
+  } else {
+    set_vanilla <- paste0(vanilla, "\n")
+  }
+
   # variables to add to the data storage
   if (is.null(columns)) {
     set_properties <- character(0)
@@ -274,7 +282,7 @@ build_experiment <- function(timeline, path, experiment_folder = "experiment", d
 
   # write both to file
   writeLines(
-    text = c(set_properties, timeline_json, init_json),
+    text = c(set_vanilla, set_properties, timeline_json, init_json),
     con = file.path(path, experiment_folder, "experiment.js")
   )
 
