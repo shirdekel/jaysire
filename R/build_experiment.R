@@ -150,16 +150,36 @@ build_experiment <- function(timeline, path, experiment_folder = "experiment", d
   plugins <- paste0("jspsych-", plugins, ".js")
 
   # create tree
-  dir.create(path)
-  dir.create(file.path(path, experiment_folder))
-  dir.create(file.path(path, experiment_folder, "resource"))
-  dir.create(file.path(path, experiment_folder, "resource", "script"))
-  dir.create(file.path(path, experiment_folder, "resource", "style"))
-  dir.create(file.path(path, experiment_folder, "resource", "audio"))
-  dir.create(file.path(path, experiment_folder, "resource", "video"))
-  dir.create(file.path(path, experiment_folder, "resource", "image"))
-  dir.create(file.path(path, experiment_folder, "resource", "other"))
-  dir.create(file.path(path, data_folder))
+  if(!dir.exists(path)) {
+    dir.create(path)
+  }
+  if(!dir.exists(file.path(path, experiment_folder))) {
+    dir.create(file.path(path, experiment_folder))
+  }
+  if(!dir.exists(file.path(path, experiment_folder, "resource"))) {
+    dir.create(file.path(path, experiment_folder, "resource"))
+  }
+  if(!dir.exists(file.path(path, experiment_folder, "resource", "script"))) {
+    dir.create(file.path(path, experiment_folder, "resource", "script"))
+  }
+  if(!dir.exists(file.path(path, experiment_folder, "resource", "style"))) {
+    dir.create(file.path(path, experiment_folder, "resource", "style"))
+  }
+  if(!dir.exists(file.path(path, experiment_folder, "resource", "audio"))) {
+    dir.create(file.path(path, experiment_folder, "resource", "audio"))
+  }
+  if(!dir.exists(file.path(path, experiment_folder, "resource", "video"))) {
+    dir.create(file.path(path, experiment_folder, "resource", "video"))
+  }
+  if(!dir.exists(file.path(path, experiment_folder, "resource", "image"))) {
+    dir.create(file.path(path, experiment_folder, "resource", "image"))
+  }
+  if(!dir.exists(file.path(path, experiment_folder, "resource", "other"))) {
+    dir.create(file.path(path, experiment_folder, "resource", "other"))
+  }
+  if(!dir.exists(file.path(path, data_folder))) {
+    dir.create(file.path(path, data_folder))
+  }
 
   # copy resource files
   if (!is.null(resources)) {
