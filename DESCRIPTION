@@ -20,8 +20,7 @@ Imports:
     tibble,
     magrittr,
     rlang,
-    here,
-    js
+    here
 RoxygenNote: 7.1.0
 URL: https://github.com/djnavarro/jaysire
 BugReports: https://github.com/djnavarro/jaysire/issues
