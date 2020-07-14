@@ -274,7 +274,7 @@ build_experiment <- function(timeline, path, experiment_folder = "experiment", d
   if (is.null(vanilla)) {
     set_vanilla <- character(0)
   } else {
-    set_vanilla <- paste0(vanilla, "\n")
+    set_vanilla <- js::coffee_compile(vanilla, bare = T)
   }
 
   # variables to add to the data storage
