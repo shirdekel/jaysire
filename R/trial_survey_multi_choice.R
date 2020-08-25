@@ -156,7 +156,7 @@ trial_survey_multi_choice <- function(
       type = "survey-multi-choice",
       questions = list_to_jsarray(questions),
       randomize_question_order = js_logical(randomize_question_order),
-      preamble = as.character(preamble),
+      preamble = preamble,
       button_label = as.character(button_label),
       required_message = required_message,
       post_trial_gap = post_trial_gap,
