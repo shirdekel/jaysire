@@ -281,7 +281,7 @@ build_experiment <- function(timeline, path, experiment_folder = "experiment", d
   if (is.null(columns)) {
     set_properties <- character(0)
   } else {
-    prop_str <- jsonlite::toJSON(columns, pretty = TRUE, json_verbatim = TRUE)
+    prop_str <- jsonlite::toJSON(columns, pretty = TRUE, json_verbatim = TRUE, auto_unbox = TRUE)
     set_properties <- paste0("jsPsych.data.addProperties(", prop_str, ");\n")
   }
 
