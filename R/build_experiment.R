@@ -288,7 +288,7 @@ build_experiment <- function(timeline, path, experiment_folder = "experiment", d
   # write the timeline to a js string
   timeline_json <- paste(
     "var timeline = ",
-    jsonlite::toJSON(timeline, pretty = TRUE, json_verbatim = TRUE, auto_unbox = TRUE),
+    jsonlite::toJSON(timeline, pretty = TRUE, json_verbatim = TRUE),
     ";\n", sep = ""
   )
 
