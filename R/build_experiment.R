@@ -311,7 +311,7 @@ build_experiment <- function(timeline, path, experiment_folder = "experiment", d
     '<!DOCTYPE html>',
     '  <html lang="en-us">',
     '  <head>',
-    paste0('    <link rel="stylesheet" href="resource/style/', stylesheets, '">'),
+    paste0('    <link rel="stylesheet" href="', resources$to[resources$type == "style"], '">'),
     paste0('    <script src="resource/script/', scripts, '"></script>')
   )
 
