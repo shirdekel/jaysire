@@ -312,11 +312,15 @@ build_experiment <- function(timeline, path, experiment_folder = "experiment", d
     '  <html lang="en-us">',
     '  <head>',
     paste0('    <link rel="stylesheet" href="resource/style/', stylesheets, '">'),
-    paste0('    <script src="resource/script/', scripts, '"></script>'),
-    paste0('    <script src="experiment.js"></script>')
+    paste0('    <script src="resource/script/', scripts, '"></script>')
   )
 
   if (length(resources$to[resources$type == "script"]) > 0) { html <- c(html, paste0('    <script src = "', resources$to[resources$type == "script"], '"></script>')) }
+
+  html <- c(
+    html,
+    paste0('    <script src="experiment.js"></script>')
+  )
 
   if (length(experiment_title) > 0) { html <- c(html, paste0('    <title>', experiment_title, '</title>')) }
 
