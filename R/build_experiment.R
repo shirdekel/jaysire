@@ -13,6 +13,9 @@
 #' @param resources A tibble specifying how to construct resource files, or NULL
 #' @param columns Additional data values (constants) to store
 #' @param vanilla Vanilla code to add at the beginning of experiment.js
+#' @param script_link A string specifying a link to a javascript file to add to the "index.html" file
+#' @param script_link_async Add \code{async} using \code{NA} and exclude using \code{NULL}
+#' @param script_link_defer Add \code{defer} using \code{NA} and exclude using \code{NULL}
 #' @param ... Arguments to pass to jsPsych.init()
 #'
 #' @return Invisibly returns \code{NULL}
@@ -134,7 +137,7 @@
 #' the GitHub page.
 #'
 #' @export
-build_experiment <- function(timeline, path, experiment_folder = "experiment", data_folder = "data", experiment_title = NULL, jsPsych_path = file.path(system.file("extdata", "jsPsych", package = "jaysire")), resources = NULL, columns = NULL, vanilla = NULL, ...) {
+build_experiment <- function(timeline, path, experiment_folder = "experiment", data_folder = "data", experiment_title = NULL, jsPsych_path = file.path(system.file("extdata", "jsPsych", package = "jaysire")), resources = NULL, columns = NULL, vanilla = NULL, script_link = NULL, script_link_async = NULL, script_link_defer = NULL, ...) {
 
   # set up
   init <- list(...)
@@ -314,6 +317,18 @@ build_experiment <- function(timeline, path, experiment_folder = "experiment", d
     paste0('    <link rel="stylesheet" href="resource/style/', stylesheets, '">'),
     paste0('    <script src="resource/script/', scripts, '"></script>')
   )
+
+  if (!is.null(script_link)) {
+    html <- c(
+      html,
+      htmltools::tags$script(
+                        src = script_link,
+                        async = script_link_async,
+                        defer = script_link_defer
+                      ) %>%
+      as.character()
+    )
+  }
 
   if (length(resources$to[resources$type == "style"]) > 0) { html <- c(html, paste0('    <link rel="stylesheet" href="', resources$to[resources$type == "style"], '">')) }
 

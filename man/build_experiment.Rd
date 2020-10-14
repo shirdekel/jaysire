@@ -13,6 +13,9 @@ build_experiment(
   jsPsych_path = file.path(system.file("extdata", "jsPsych", package = "jaysire")),
   resources = NULL,
   columns = NULL,
+  script_link = NULL,
+  script_link_async = NULL,
+  script_link_defer = NULL,
   ...
 )
 }
@@ -32,6 +35,12 @@ build_experiment(
 \item{resources}{A tibble specifying how to construct resource files, or NULL}
 
 \item{columns}{Additional data values (constants) to store}
+
+\item{script_link}{A string specifying a link to a javascript file to add to the "index.html" file}
+
+\item{script_link_async}{Add \code{async} using \code{NA} and exclude using \code{NULL}}
+
+\item{script_link_defer}{Add \code{defer} using \code{NA} and exclude using \code{NULL}}
 
 \item{...}{Arguments to pass to jsPsych.init()}
 }
