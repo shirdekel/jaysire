@@ -83,7 +83,7 @@ jsPsych.plugins['survey-html-form4'] = (function() {
     if (sum !== 100) {
       var msg = "Total budget allocation must sum to 100. Currently, the sum is " + sum + ".";
       alert(msg);
-      } else if (new Set(rank).size != 5) {
+      } else if (rank.length != 5) {
         alert("Each project's rank must be unique. Currently, one or more ranks are repeated.");
       } else { // resume normal functioning
         // measure response time
