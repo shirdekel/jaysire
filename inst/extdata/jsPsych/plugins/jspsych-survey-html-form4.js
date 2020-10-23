@@ -80,10 +80,18 @@ jsPsych.plugins['survey-html-form4'] = (function() {
         rank.push(Number(ranking_vals[k].value));
       }
       
-    if (sum !== 100) {
-      var msg = "Total budget allocation must sum to 100. Currently, the sum is " + sum + ".";
-      alert(msg);
-      } else if (rank.length != 5) {
+        var urlvar = jsPsych.data.urlVariables();
+
+        var test = false;
+
+        if (typeof urlvar.test !== 'undefined') {
+            test = urlvar.test;
+        }
+        
+        if (sum !== 100 & test === false) {
+            var msg = "Total budget allocation must sum to 100. Currently, the sum is " + sum + ".";
+            alert(msg);
+        } else if (rank.length != 5 & test === false) {
         alert("Each project's rank must be unique. Currently, one or more ranks are repeated.");
       } else { // resume normal functioning
         // measure response time
