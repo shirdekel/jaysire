@@ -80,6 +80,21 @@ jsPsych.plugins['survey-html-form4'] = (function() {
         rank.push(Number(ranking_vals[k].value));
       }
       
+        // from https://stackoverflow.com/a/7376645/13945974
+        function hasDuplicates(array) {
+            var valuesSoFar = Object.create(null);
+            for (var i = 0; i < array.length; ++i) {
+                var value = array[i];
+                if (value in valuesSoFar) {
+                    return true;
+                }
+                valuesSoFar[value] = true;
+            }
+            return false;
+        }
+
+        var rank_duplicated = hasDuplicates(rank);
+
         var urlvar = jsPsych.data.urlVariables();
 
         var test = false;
@@ -87,11 +102,11 @@ jsPsych.plugins['survey-html-form4'] = (function() {
         if (typeof urlvar.test !== 'undefined') {
             test = urlvar.test;
         }
-        
-        if (sum !== 100 & test === false) {
+
+        if (sum !== 100 && !test) {
             var msg = "Total budget allocation must sum to 100. Currently, the sum is " + sum + ".";
             alert(msg);
-        } else if (rank.length != 5 & test === false) {
+        } else if (rank_duplicated && !test) {
         alert("Each project's rank must be unique. Currently, one or more ranks are repeated.");
       } else { // resume normal functioning
         // measure response time
