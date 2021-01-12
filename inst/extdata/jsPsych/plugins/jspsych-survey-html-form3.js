@@ -81,11 +81,17 @@ jsPsych.plugins['survey-html-form3'] = (function() {
       var allocation_vals = display_element.querySelector('#jspsych-survey-html-form3').querySelectorAll(name_match);
       sum = sum + Number(allocation_vals[0].value); // calculate sum of array values
     }
-    
-    if (sum !== 100){
-      var msg = "Total budget allocation must sum to 100. Currently, the sum is " + sum + ".";
-      alert(msg);
-      } else { // resume normal functioning
+
+        var test = false;
+
+        if (typeof urlvar.test !== 'undefined') {
+            test = urlvar.test;
+        }
+
+        if (sum !== 100 && !test){
+            var msg = "Total budget allocation must sum to 100. Currently, the sum is " + sum + ".";
+            alert(msg);
+        } else { // resume normal functioning
         // measure response time
         var endTime = performance.now
         var response_time = endTime - startTime;
